@@ -1,0 +1,22 @@
+{
+    "img1" : {
+        "firebaseKey" : "img1",
+        "profileImage" : ".jpeg",
+        "uid" : ""
+    },
+    "img2" : {
+        "firebaseKey" : "img2",
+        "profileImage" : ".jpeg",
+        "uid" : ""
+    },
+    "img3" : {
+        "firebaseKey" : "img3",
+        "profileImage" : ".jpeg",
+        "uid" : ""
+    },
+    "img4" : {
+        "firebaseKey" : "img4",
+        "profileImage" : ".jpeg",
+        "uid" : ""
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "artist1" : {
+        "firebaseKey" : "artist1",
+        "name" : "Justin Gill",
+        "city" : "nashville",
+        "portfolioUrl" : ".com",
+        "instagram" : ".com",
+        "gender" : "male",
+        "orientation" : "straight",
+        "hourlyRt" : "$150",
+        "shopName" : "Alchemy Nashville",
+        "availability" : "2 wks",
+        "thumbnailImg" : ".jpeg"
+    },
+    "artist2" : {
+        "firebaseKey" : "artist2",
+        "name" : "Sharon Wages",
+        "city" : "nashville",
+        "portfolioUrl" : ".com",
+        "instagram" : ".com",
+        "gender" : "female",
+        "orientation" : "queer",
+        "hourlyRt" : "$250",
+        "shopName" : "Sage and Serpent",
+        "availability" : "10 months",
+        "thumbnailImg" : ".jpeg"
+    },
+    "artist3" : {
+        "firebaseKey" : "artist3",
+        "name" : "Vivian Lore",
+        "city" : "nashville",
+        "portfolioUrl" : ".com",
+        "instagram" : ".com",
+        "gender" : "female",
+        "orientation" : "Bi",
+        "hourlyRt" : "$150",
+        "shopName" : "Sage and Serpent",
+        "availability" : "3 wks",
+        "thumbnailImg" : ".jpeg"
+    },
+    "artist4" : {
+        "firebaseKey" : "artist4",
+        "name" : "Violet De la Vega",
+        "city" : "nashville",
+        "portfolioUrl" : ".com",
+        "instagram" : ".com",
+        "gender" : "female",
+        "orientation" : "straight",
+        "hourlyRt" : "$200",
+        "shopName" : "Kustom Thrills",
+        "availability" : "6 wks",
+        "thumbnailImg" : ".jpeg"
+    },
+    "artist5" : {
+        "firebaseKey" : "artist5",
+        "name" : "Tai Orten",
+        "city" : "nashville",
+        "portfolioUrl" : ".com",
+        "instagram" : ".com",
+        "gender" : "female",
+        "orientation" : "queer",
+        "hourlyRt" : "$170",
+        "shopName" : "Alchemy Nashville",
+        "availability" : "8 wks",
+        "thumbnailImg" : ".jpeg"
+    }
+}
