@@ -1,0 +1,22 @@
+{
+    "fav1" : {
+        "firebaseKey" : "fav1",
+        "artistId" : "",
+        "uid" : ""
+    },
+    "fav2" : {
+        "firebaseKey" : "fav2",
+        "artistId" : "",
+        "uid" : ""
+    },
+    "fav3" : {
+        "firebaseKey" : "fav3",
+        "artistId" : "",
+        "uid" : ""
+    },
+    "fav4" : {
+        "firebaseKey" : "fav4",
+        "artistId" : "",
+        "uid" : ""
+    }
+}

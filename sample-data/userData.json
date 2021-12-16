@@ -1,0 +1,26 @@
+{
+    "user1" : {
+        "firebaseKey" : "e1",
+        "name" : "Elle Lawrence",
+        "homeImage" : ".jpeg",
+        "uid" : ""
+    },
+    "user2" : {
+        "firebaseKey" : "e2",
+        "name" : "Elle Lawrence",
+        "homeImage" : ".jpeg",
+        "uid" : ""
+    },
+    "user3" : {
+        "firebaseKey" : "e3",
+        "name" : "Elle Lawrence",
+        "homeImage" : ".jpeg",
+        "uid" : ""
+    },
+    "user4" : {
+        "firebaseKey" : "e4",
+        "name" : "Elle Lawrence",
+        "homeImage" : ".jpeg",
+        "uid" : ""
+    }
+}
