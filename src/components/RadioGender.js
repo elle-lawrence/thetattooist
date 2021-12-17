@@ -1,27 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function RadioGender({ setSearchTerm }) {
+export default function RadioGender({ filter, setFilter }) {
 //   const [gender, setGender] = useState('');
 
   const selectGender = (e) => {
-    if (e.target.value === 'female') {
-      setSearchTerm('female');
-    } else if (e.target.value === 'male') {
-      setSearchTerm('male');
-    } else if (e.target.value === 'nonbinary') {
-      setSearchTerm('nonbinary');
+    console.warn(e);
+    const { id } = e.target;
+    if (id === 'female') {
+      setFilter('female');
+      console.warn(id);
+    } else if (id === 'male') {
+      setFilter('male');
+      console.warn(id);
+    } else if (id === 'nonbinary') {
+      setFilter('nonbinary');
+      console.warn(id);
     }
   };
+  console.warn(filter);
   return (
     <>
       <div className="form-check form-check-inline">
         <input
           className="form-check-input"
           type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio1"
-          value="female"
+          name="female"
+          id="female"
+          value={filter}
+          onClick={selectGender}
         //   gender={gender}
         />
         <label
@@ -35,9 +42,9 @@ export default function RadioGender({ setSearchTerm }) {
         <input
           className="form-check-input"
           type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio2"
-          value="male"
+          name="male"
+          id="male"
+          value={filter}
           onClick={selectGender}
         //   gender={gender}
         />
@@ -52,9 +59,10 @@ export default function RadioGender({ setSearchTerm }) {
         <input
           className="form-check-input"
           type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio3"
-          value="nonbinary"
+          name="nonbinary"
+          id="nonbinary"
+          value={filter}
+          onClick={selectGender}
         //   gender={gender}
         />
         <label
@@ -69,9 +77,9 @@ export default function RadioGender({ setSearchTerm }) {
 }
 
 RadioGender.propTypes = {
-//   searchTerm: PropTypes.string,
-  setSearchTerm: PropTypes.func.isRequired,
+  filter: PropTypes.string,
+  setFilter: PropTypes.func.isRequired,
 };
-// RadioGender.defaultProps = {
-//   searchTerm: null,
-// };
+RadioGender.defaultProps = {
+  filter: null,
+};

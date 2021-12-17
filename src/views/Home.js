@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import SearchGenderButton from '../components/buttons/SearchGenderButton';
+import SearchNameButton from '../components/buttons/SearchNameButton';
+import ShowAllButton from '../components/buttons/ShowAllButton';
 
 export default function Home() {
   return (
     <>
       <h1>the tattooist</h1>
-      <Link className="linkStyling" to="/artists">
-        Search
-      </Link>
+      <SearchNameButton />
+      <SearchGenderButton />
+      <ShowAllButton />
     </>
   );
 }

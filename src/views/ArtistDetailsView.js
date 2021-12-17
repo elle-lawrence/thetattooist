@@ -7,15 +7,16 @@ export default function ArtistDetailsView() {
   const { key } = useParams();
   const [singleArtist, setSingleArtist] = useState({});
   // const [images, setImages] =
-
   useEffect(() => {
     getSingleArtist(key).then(setSingleArtist);
   }, []);
 
   return (
     <div>
-      <h4>See Artist Info here</h4>
-      <ArtistDetails singleArtist={singleArtist} />
+      <>
+        <h4>See Artist Info here</h4>
+        <ArtistDetails singleArtist={singleArtist} />
+      </>
     </div>
   );
 }

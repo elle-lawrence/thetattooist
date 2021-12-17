@@ -11,7 +11,7 @@ const DetailsContainer = styled.div`
   padding-left: 10vw;
   padding-right: 10vw;
   align-items: left;
-  background-color: 
+  background-color:
   backdrop-filter: blur(5px);
 `;
 

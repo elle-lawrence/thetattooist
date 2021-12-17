@@ -7,7 +7,7 @@ import PublicRoutes from './PublicRoutes';
 export default function Routes({ user }) {
   return (
     <>
-      <PublicRoutes user={user} />
+      <PublicRoutes />
       {user && <UserRoutes user={user} />}
       {user?.isAdmin && <AdminRoutes user={user} />}
     </>

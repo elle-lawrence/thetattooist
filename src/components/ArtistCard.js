@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DetailsButton from './buttons/DetailsButton';
 import EditButton from './buttons/EditButton';
 import DeleteButton from './buttons/DeleteButton';
+import userId from '../api/data/userId';
 
 const CardStyle = styled.div`
     width: 25rem;
@@ -11,8 +12,8 @@ const CardStyle = styled.div`
     margin: 20px;
     flex-basis: 2;
 `;
-
-export default function ArtistCard({ artist, user, setAllArtists }) {
+export default function ArtistCard({ artist, setAllArtists }) {
+  const userInfoObj = userId();
   return (
     <>
       <CardStyle className="card">
@@ -27,9 +28,9 @@ export default function ArtistCard({ artist, user, setAllArtists }) {
           <h5>Shop: {artist.shopName}</h5>
         </div>
       </CardStyle>
-      {user?.isAdmin ? (
+      {userInfoObj.isAdmin ? (
         <>
-          <DetailsButton firebaseKey={artist.firebaseKey} />
+          <DetailsButton firebaseKey={artist.firebaseKey} singleArtist={artist} />
           <EditButton firebaseKey={artist.firebaseKey} />
           <DeleteButton
             firebaseKey={artist.firebaseKey}
@@ -37,14 +38,14 @@ export default function ArtistCard({ artist, user, setAllArtists }) {
           />
         </>
       ) : (
-        <><DetailsButton firebaseKey={artist.firebaseKey} /></>
+        <><DetailsButton firebaseKey={artist.firebaseKey} singleArtist={artist} /></>
       )}
     </>
   );
 }
 
 ArtistCard.propTypes = {
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  // user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   setAllArtists: PropTypes.func.isRequired,
   artist: PropTypes.shape({
     name: PropTypes.string,
@@ -61,6 +62,6 @@ ArtistCard.propTypes = {
   }).isRequired,
 };
 
-ArtistCard.defaultProps = {
-  user: null,
-};
+// ArtistCard.defaultProps = {
+//   user: null,
+// };
