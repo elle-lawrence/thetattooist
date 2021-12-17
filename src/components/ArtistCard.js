@@ -12,8 +12,8 @@ const CardStyle = styled.div`
     margin: 20px;
     flex-basis: 2;
 `;
+const userInfoObj = userId();
 export default function ArtistCard({ artist, setAllArtists }) {
-  const userInfoObj = userId();
   return (
     <>
       <CardStyle className="card">

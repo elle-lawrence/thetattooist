@@ -14,7 +14,7 @@ export default function PublicRoutes() {
       <Route exact path="/artists" component={ShowAllArtists} />
       <Route exact path="/artists/:key" component={ArtistsDetailsView} />
       <Route exact path="/searchname" component={SearchName} />
-      <Route exact path="/searchgender" component={SearchGender} />
+      <Route exact path="/artists/searchgender" component={SearchGender} />
 
     </Switch>
   );

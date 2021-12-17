@@ -3,6 +3,7 @@ import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import RadioGender from '../components/RadioGender';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
+import userId from '../api/data/userId';
 
 export default function SearchGender() {
   const [allArtists, setAllArtists] = useState([]);
@@ -11,6 +12,7 @@ export default function SearchGender() {
   const [shownArtists, setShownArtists] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredArtists, setFilteredArtists] = useState([]);
+  const userInfoObj = userId();
 
   // Cache artists
   useEffect(() => {
@@ -70,6 +72,7 @@ export default function SearchGender() {
           key={artist.firebaseKey}
           artist={artist}
           setAllArtists={setAllArtists}
+          user={userInfoObj}
         />
       ))}
     </div>
