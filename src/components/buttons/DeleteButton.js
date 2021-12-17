@@ -12,7 +12,7 @@ export default function DeleteButton({ firebaseKey, setAllItems }) {
       onClick={() => {
         deleteArtist(firebaseKey).then((allItems) => {
           setAllItems(allItems);
-          history.push('/admin');
+          history.push('/artists');
         });
       }}
     >

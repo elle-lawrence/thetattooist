@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import RadioGender from '../components/RadioGender';
-import SearchBar from '../components/SearchBar';
+import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
+import userId from '../api/data/userId';
 
-export default function SearchBy({ user }) {
+export default function SearchGender() {
   const [allArtists, setAllArtists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchedArtists, setSearchedArtists] = useState([]);
   const [shownArtists, setShownArtists] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredArtists, setFilteredArtists] = useState([]);
+  const userInfoObj = userId();
 
   // Cache artists
   useEffect(() => {
-    console.warn(user);
     let isMounted = true;
     getAllArtists().then((artists) => {
       if (isMounted) setAllArtists(artists);
@@ -28,7 +28,7 @@ export default function SearchBy({ user }) {
   // Handle Searching
 
   useEffect(() => {
-    const searchResults = allArtists.filter((artist) => artist.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const searchResults = allArtists.filter((artist) => artist.gender.toLowerCase().includes(searchTerm.toLowerCase()));
     setSearchedArtists(searchResults);
   }, [searchTerm]);
 
@@ -40,7 +40,7 @@ export default function SearchBy({ user }) {
   // Handle Filtering
   useEffect(() => {
     if (filter) {
-      const filterResults = allArtists.filter((artist) => artist.category === filter);
+      const filterResults = allArtists.filter((artist) => artist.gender === filter);
       setFilteredArtists(filterResults);
     }
   }, [filter]);
@@ -65,24 +65,16 @@ export default function SearchBy({ user }) {
 
   return (
     <div>
-      <RadioGender setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-      <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+      <SearchButtonGroup />
+      <RadioGender filter={filter} setFilter={setFilter} />
       {shownArtists.map((artist) => (
         <ArtistCard
           key={artist.firebaseKey}
           artist={artist}
           setAllArtists={setAllArtists}
-          user={user}
+          user={userInfoObj}
         />
       ))}
     </div>
   );
 }
-
-SearchBy.propTypes = {
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-};
-
-SearchBy.defaultProps = {
-  user: null,
-};
