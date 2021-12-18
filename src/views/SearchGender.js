@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 
-export default function SearchGender() {
+export default function SearchGender({ user }) {
   const [allArtists, setAllArtists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchedArtists, setSearchedArtists] = useState([]);
@@ -113,8 +114,17 @@ export default function SearchGender() {
           key={artist.firebaseKey}
           artist={artist}
           setAllArtists={setAllArtists}
+          user={user}
         />
       ))}
     </div>
   );
 }
+
+SearchGender.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+};
+
+SearchGender.defaultProps = {
+  user: null,
+};

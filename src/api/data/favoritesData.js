@@ -17,22 +17,22 @@ const getSingleFavorite = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createFavorite = (obj, user) => new Promise((resolve, reject) => {
+const createFavorite = (obj) => new Promise((resolve, reject) => {
   axios
     .post(`${databaseURL}/favorites.json`, obj)
     .then((response) => {
       const firebaseKey = response.data.name;
       axios
         .patch(`${databaseURL}/favorites/${firebaseKey}.json`, { firebaseKey })
-        .then(() => getAllFavorites(user).then(resolve));
+        .then(() => getAllFavorites(obj.uid).then(resolve));
     })
     .catch(reject);
 });
 
-const deleteFavorite = (firebaseKey, user) => new Promise((resolve, reject) => {
+const deleteFavorite = (obj) => new Promise((resolve, reject) => {
   axios
-    .delete(`${databaseURL}/favorites/${firebaseKey}.json`)
-    .then(() => getAllFavorites(user).then(resolve))
+    .delete(`${databaseURL}/favorites/${obj.firebaseKey}.json`)
+    .then(() => getAllFavorites(obj.uid).then(resolve))
     .catch(reject);
 });
 

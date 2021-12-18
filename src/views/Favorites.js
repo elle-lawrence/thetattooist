@@ -10,7 +10,7 @@ export default function FavoritesView() {
 
   useEffect(() => {
     let isMounted = true;
-    getAllFavorites(userInfoObj).then((artists) => {
+    getAllFavorites(userInfoObj.uid).then((artists) => {
       if (isMounted) setFavArtists(artists);
     });
     return () => {

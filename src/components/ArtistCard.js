@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import DetailsButton from './buttons/DetailsButton';
 import EditButton from './buttons/EditButton';
 import DeleteButton from './buttons/DeleteButton';
-import userId from '../api/data/userId';
 import FavoriteCheck from './FavoriteCheck';
 
 const CardStyle = styled.div`
@@ -13,9 +12,10 @@ const CardStyle = styled.div`
   margin: 20px;
   flex-basis: 2;
 `;
-export default function ArtistCard({ artist, setAllArtists, favArtist }) {
-  const userInfoObj = userId();
-  console.warn(userInfoObj);
+export default function ArtistCard({
+  artist, setAllArtists, favArtist, user,
+}) {
+  // console.warn(userInfoObj);
   return (
     <>
       <CardStyle className="card">
@@ -36,7 +36,7 @@ export default function ArtistCard({ artist, setAllArtists, favArtist }) {
           <h5>Shop: {artist.shopName}</h5>
         </div>
       </CardStyle>
-      {userInfoObj.isAdmin ? (
+      {user?.isAdmin ? (
         <>
           <DetailsButton
             firebaseKey={artist.firebaseKey}
@@ -56,13 +56,17 @@ export default function ArtistCard({ artist, setAllArtists, favArtist }) {
           />
         </>
       )}
-      {userInfoObj ? <FavoriteCheck favArtist={favArtist} /> : <></>}
+      {user ? (
+        <FavoriteCheck favArtist={favArtist} artist={artist} user={user} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
 
 ArtistCard.propTypes = {
-  // user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // setFavArtists: PropTypes.func.isRequired,
   favArtist: PropTypes.shape({
     firebaseKey: PropTypes.string,
@@ -88,4 +92,5 @@ ArtistCard.propTypes = {
 
 ArtistCard.defaultProps = {
   favArtist: {},
+  user: null,
 };

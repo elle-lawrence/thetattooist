@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import SearchBar from '../components/SearchBar';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 
-export default function SearchName() {
+export default function SearchName({ user }) {
   const [allArtists, setAllArtists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchedArtists, setSearchedArtists] = useState([]);
@@ -70,8 +71,17 @@ export default function SearchName() {
           key={artist.firebaseKey}
           artist={artist}
           setAllArtists={setAllArtists}
+          user={user}
         />
       ))}
     </div>
   );
 }
+
+SearchName.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+};
+
+SearchName.defaultProps = {
+  user: null,
+};
