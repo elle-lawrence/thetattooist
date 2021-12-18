@@ -12,7 +12,8 @@ const initialState = {
 
 export default function FavoriteCheck({ favArtist }) {
   const userInfo = userId();
-  const [formInput, setFormInput] = useState({
+  const [isChecked, setIsChecked] = useState(false);
+  const [fav, setFav] = useState({
     ...initialState,
     uid: userInfo.uid,
   });
@@ -20,29 +21,30 @@ export default function FavoriteCheck({ favArtist }) {
 
   useEffect(() => {
     if (favArtist.firebaseKey) {
-      console.warn(favArtist.firebaseKey);
-      setFormInput({
+      //   console.warn(favArtist.firebaseKey);
+      setIsChecked(true);
+      setFav({
         artistId: favArtist.firebaseKey,
         uid: userInfo.uid,
-        firebaseKey: '',
+        firebaseKey: fav.firebaseKey,
       });
     }
   }, []);
 
   const handleSubmit = () => {
-    if (formInput?.firebaseKey) {
-      deleteFavorite(formInput.firebaseKey).then();
+    if (fav?.firebaseKey) {
+      deleteFavorite(fav.firebaseKey).then();
     } else {
-      createFavorite({ ...formInput }).then(() => {
+      createFavorite({ ...fav }).then(() => {
         history.push('/artists');
       });
-      console.warn(formInput);
+      //   console.warn(fav);
     }
   };
 
   //   const handleChecked = (favorite) => {
   //     if (favorite) {
-  //       setFormInput((prevState) => ({
+  //       setIsChecked((prevState) => ({
   //         ...prevState,
   //       }));
   //       handleSubmit(false);
@@ -51,11 +53,13 @@ export default function FavoriteCheck({ favArtist }) {
 
   const handleChecked = (e) => {
     const { name, checked } = e.target;
-    setFormInput((prevState) => ({
+    setIsChecked((prevState) => ({
       ...prevState,
-      [name]: checked,
+      [name]: !checked,
     }));
-    handleSubmit(formInput);
+    if (isChecked) {
+      handleSubmit(fav);
+    }
   };
 
   return (
@@ -64,7 +68,7 @@ export default function FavoriteCheck({ favArtist }) {
       type="checkbox"
       className="form-check-input"
       id="favorited"
-      checked={formInput}
+      checked={isChecked}
       onChange={handleChecked}
     />
   );
