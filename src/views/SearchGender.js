@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
-import RadioGender from '../components/RadioGender';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
-import userId from '../api/data/userId';
 
 export default function SearchGender() {
   const [allArtists, setAllArtists] = useState([]);
@@ -12,7 +10,17 @@ export default function SearchGender() {
   const [shownArtists, setShownArtists] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredArtists, setFilteredArtists] = useState([]);
-  const userInfoObj = userId();
+  const [gender, setGender] = useState('');
+
+  const handleChangeFemale = () => {
+    setGender('female');
+    setFilter(gender);
+  };
+
+  const handleChangeMale = () => {
+    setGender('male');
+    setFilter(gender);
+  };
 
   // Cache artists
   useEffect(() => {
@@ -28,7 +36,7 @@ export default function SearchGender() {
   // Handle Searching
 
   useEffect(() => {
-    const searchResults = allArtists.filter((artist) => artist.gender.toLowerCase().includes(searchTerm.toLowerCase()));
+    const searchResults = allArtists.filter((artist) => artist.name.toLowerCase().includes(searchTerm.toLowerCase()));
     setSearchedArtists(searchResults);
   }, [searchTerm]);
 
@@ -42,6 +50,7 @@ export default function SearchGender() {
     if (filter) {
       const filterResults = allArtists.filter((artist) => artist.gender === filter);
       setFilteredArtists(filterResults);
+      console.warn(filter);
     }
   }, [filter]);
 
@@ -66,13 +75,44 @@ export default function SearchGender() {
   return (
     <div>
       <SearchButtonGroup />
-      <RadioGender filter={filter} setFilter={setFilter} />
+
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="female"
+          id="female"
+          value={gender}
+          onChange={handleChangeFemale}
+        />
+        <label
+          className="form-check-label"
+          htmlFor="inlineRadio1"
+        >
+          Female
+        </label>
+      </div>
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="male"
+          id="male"
+          value={gender}
+          onChange={handleChangeMale}
+        />
+        <label
+          className="form-check-label"
+          htmlFor="inlineRadio2"
+        >
+          Male
+        </label>
+      </div>
       {shownArtists.map((artist) => (
         <ArtistCard
           key={artist.firebaseKey}
           artist={artist}
           setAllArtists={setAllArtists}
-          user={userInfoObj}
         />
       ))}
     </div>

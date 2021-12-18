@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function RadioGender({ filter, setFilter }) {
+export default function RadioGender({ setFilter }) {
 //   const [gender, setGender] = useState('');
 
-  const selectGender = (e) => {
-    console.warn(e);
-    const { id } = e.target;
-    if (id === 'female') {
-      setFilter('female');
-      console.warn(id);
-    } else if (id === 'male') {
-      setFilter('male');
-      console.warn(id);
-    } else if (id === 'nonbinary') {
-      setFilter('nonbinary');
-      console.warn(id);
-    }
+  // const selectGender = (e) => {
+  //   console.warn(e);
+  //   const { id } = e.target;
+  //   if (id === 'female') {
+  //     setFilter('female');
+  //     console.warn(id);
+  //   } else if (id === 'male') {
+  //     setFilter('male');
+  //     console.warn(id);
+  //   } else if (id === 'nonbinary') {
+  //     setFilter('nonbinary');
+  //     console.warn(id);
+  //   }
+  // };
+  // console.warn(filter);
+
+  // const App = () => {
+  const [gender, setGender] = useState('');
+
+  const handleChangeFemale = () => {
+    setGender('female');
+    setFilter(gender);
   };
-  console.warn(filter);
+
+  const handleChangeMale = () => {
+    setGender('male');
+    setFilter(gender);
+  };
+
   return (
     <>
       <div className="form-check form-check-inline">
@@ -27,8 +41,8 @@ export default function RadioGender({ filter, setFilter }) {
           type="radio"
           name="female"
           id="female"
-          value={filter}
-          onClick={selectGender}
+          value={gender}
+          onChange={handleChangeFemale}
         //   gender={gender}
         />
         <label
@@ -44,8 +58,8 @@ export default function RadioGender({ filter, setFilter }) {
           type="radio"
           name="male"
           id="male"
-          value={filter}
-          onClick={selectGender}
+          value={gender}
+          onChange={handleChangeMale}
         //   gender={gender}
         />
         <label
@@ -55,13 +69,13 @@ export default function RadioGender({ filter, setFilter }) {
           Male
         </label>
       </div>
-      <div className="form-check form-check-inline">
+      {/* <div className="form-check form-check-inline">
         <input
           className="form-check-input"
           type="radio"
           name="nonbinary"
           id="nonbinary"
-          value={filter}
+          value={gender}
           onClick={selectGender}
         //   gender={gender}
         />
@@ -71,15 +85,15 @@ export default function RadioGender({ filter, setFilter }) {
         >
           Non-Binary
         </label>
-      </div>
+      </div> */}
     </>
   );
 }
 
 RadioGender.propTypes = {
-  filter: PropTypes.string,
+  // filter: PropTypes.string,
   setFilter: PropTypes.func.isRequired,
 };
-RadioGender.defaultProps = {
-  filter: null,
-};
+// RadioGender.defaultProps = {
+//   filter: null,
+// };
