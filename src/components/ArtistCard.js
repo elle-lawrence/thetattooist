@@ -4,20 +4,28 @@ import PropTypes from 'prop-types';
 import DetailsButton from './buttons/DetailsButton';
 import EditButton from './buttons/EditButton';
 import DeleteButton from './buttons/DeleteButton';
-import userId from '../api/data/userId';
+import FavoriteCheck from './FavoriteCheck';
 
 const CardStyle = styled.div`
-    width: 25rem;
-    height: 25rem;
-    margin: 20px;
-    flex-basis: 2;
+  width: 25rem;
+  height: 25rem;
+  margin: 20px;
+  flex-basis: 2;
 `;
-const userInfoObj = userId();
-export default function ArtistCard({ artist, setAllArtists }) {
+export default function ArtistCard({
+  artist, setAllArtists, favArtist, user,
+}) {
+  // console.warn(userInfoObj);
   return (
     <>
       <CardStyle className="card">
-        <img src={artist.thumbnailImg} className="card-img-top" alt="thumbnail of Artist" height="70" width="70" />
+        <img
+          src={artist.thumbnailImg}
+          className="card-img-top"
+          alt="thumbnail of Artist"
+          height="70"
+          width="70"
+        />
         <div className="card-body">
           <h3 className="card-title">{artist.name}</h3>
           <h5 className="card-text">{artist.city}</h5>
@@ -28,9 +36,12 @@ export default function ArtistCard({ artist, setAllArtists }) {
           <h5>Shop: {artist.shopName}</h5>
         </div>
       </CardStyle>
-      {userInfoObj.isAdmin ? (
+      {user?.isAdmin ? (
         <>
-          <DetailsButton firebaseKey={artist.firebaseKey} singleArtist={artist} />
+          <DetailsButton
+            firebaseKey={artist.firebaseKey}
+            singleArtist={artist}
+          />
           <EditButton firebaseKey={artist.firebaseKey} />
           <DeleteButton
             firebaseKey={artist.firebaseKey}
@@ -38,14 +49,31 @@ export default function ArtistCard({ artist, setAllArtists }) {
           />
         </>
       ) : (
-        <><DetailsButton firebaseKey={artist.firebaseKey} singleArtist={artist} /></>
+        <>
+          <DetailsButton
+            firebaseKey={artist.firebaseKey}
+            singleArtist={artist}
+          />
+        </>
+      )}
+      {user ? (
+        <FavoriteCheck favArtist={favArtist} artist={artist} user={user} />
+      ) : (
+        <></>
       )}
     </>
   );
 }
 
 ArtistCard.propTypes = {
-  // user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  // setFavArtists: PropTypes.func.isRequired,
+  favArtist: PropTypes.shape({
+    firebaseKey: PropTypes.string,
+    favorited: PropTypes.bool,
+    uid: PropTypes.string,
+    artistId: PropTypes.string,
+  }),
   setAllArtists: PropTypes.func.isRequired,
   artist: PropTypes.shape({
     name: PropTypes.string,
@@ -62,6 +90,7 @@ ArtistCard.propTypes = {
   }).isRequired,
 };
 
-// ArtistCard.defaultProps = {
-//   user: null,
-// };
+ArtistCard.defaultProps = {
+  favArtist: {},
+  user: null,
+};

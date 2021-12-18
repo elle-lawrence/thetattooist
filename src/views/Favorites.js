@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { getAllArtists } from '../api/data/artists';
+import { getAllFavorites } from '../api/data/favoritesData';
+import userId from '../api/data/userId';
 // import PropTypes from 'prop-types';
 import ArtistCard from '../components/ArtistCard';
 
-export default function Favorites() {
+export default function FavoritesView() {
   const [favArtists, setFavArtists] = useState([]);
+  const userInfoObj = userId();
 
   useEffect(() => {
     let isMounted = true;
-    getAllArtists().then((artists) => {
+    getAllFavorites(userInfoObj.uid).then((artists) => {
       if (isMounted) setFavArtists(artists);
     });
     return () => {
@@ -18,13 +20,14 @@ export default function Favorites() {
 
   return (
     <>
-      {favArtists.map((artist) => (
+      {favArtists.map((favArtist) => (
         <ArtistCard
-          key={artist.firebaseKey}
-          artist={artist}
-          setFavArtists={setFavArtists}
+          key={favArtist.firebaseKey}
+          favArtist={favArtist}
+          // setFavArtists={setFavArtists}
         />
-      ))};
+      ))}
+      ;
     </>
   );
 }
