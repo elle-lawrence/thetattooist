@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import userId from '../api/data/userId';
 import { deleteFavorite, createFavorite } from '../api/data/favoritesData';
 
@@ -7,7 +8,6 @@ const initialState = {
   uid: '',
   firebaseKey: '',
   artistId: '',
-  favorited: false,
 };
 
 export default function FavoriteCheck({ favArtist }) {
@@ -16,6 +16,7 @@ export default function FavoriteCheck({ favArtist }) {
     ...initialState,
     uid: userInfo.uid,
   });
+  const history = useHistory();
 
   useEffect(() => {
     if (favArtist.firebaseKey) {
@@ -28,29 +29,33 @@ export default function FavoriteCheck({ favArtist }) {
     }
   }, []);
 
-  const handleSubmit = (fave) => {
+  const handleSubmit = () => {
     if (formInput?.firebaseKey) {
-      deleteFavorite(formInput.firebaseKey).then(() => {});
+      deleteFavorite(formInput.firebaseKey).then();
     } else {
-      createFavorite({ ...formInput, favorited: fave }).then(() => {});
+      createFavorite({ ...formInput }).then(() => {
+        history.push('/artists');
+      });
       console.warn(formInput);
     }
   };
 
-  const handleChecked = (favorite) => {
-    if (favorite) {
-      setFormInput((prevState) => ({
-        ...prevState,
-        favorited: false,
-      }));
-      handleSubmit(false);
-    } else {
-      setFormInput((prevState) => ({
-        ...prevState,
-        favorited: true,
-      }));
-      handleSubmit(true);
-    }
+  //   const handleChecked = (favorite) => {
+  //     if (favorite) {
+  //       setFormInput((prevState) => ({
+  //         ...prevState,
+  //       }));
+  //       handleSubmit(false);
+  //     }
+  //   };
+
+  const handleChecked = (e) => {
+    const { name, checked } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+    handleSubmit(formInput);
   };
 
   return (
@@ -59,8 +64,8 @@ export default function FavoriteCheck({ favArtist }) {
       type="checkbox"
       className="form-check-input"
       id="favorited"
-      checked={formInput.favorited}
-      onChange={() => handleChecked(formInput.favorited)}
+      checked={formInput}
+      onChange={handleChecked}
     />
   );
 }
