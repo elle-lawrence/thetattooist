@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
-import SearchBar from '../components/SearchBar';
+// import SearchBar from '../components/SearchBar';
 import RadioGender from '../components/RadioGender';
 
 export default function SearchGender({ user }) {
@@ -42,7 +42,6 @@ export default function SearchGender({ user }) {
     if (filter) {
       const filterResults = allArtists.filter((artist) => artist.gender === filter);
       setFilteredArtists(filterResults);
-      console.warn(filter);
     }
   }, [filter]);
 
@@ -67,8 +66,8 @@ export default function SearchGender({ user }) {
   return (
     <>
       <div>
-        <SearchButtonGroup />
-        <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+        <SearchButtonGroup user={user} />
+        {/* <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} /> */}
         <RadioGender
           setFilter={setFilter}
           filter={filter}

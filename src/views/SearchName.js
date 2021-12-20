@@ -64,7 +64,7 @@ export default function SearchName({ user }) {
 
   return (
     <div>
-      <SearchButtonGroup />
+      <SearchButtonGroup user={user} />
       <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
       {shownArtists.map((artist) => (
         <ArtistCard

@@ -1,40 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { getAllFavorites } from '../api/data/favoritesData';
-import userId from '../api/data/userId';
-// import PropTypes from 'prop-types';
-import ArtistCard from '../components/ArtistCard';
+import PropTypes from 'prop-types';
+import { getFavoritedArtists } from '../api/data/favoritesData';
+import FavCard from '../components/FavCard';
 
-export default function FavoritesView() {
-  const [favArtists, setFavArtists] = useState([]);
-  const userInfoObj = userId();
+export default function FavoritesView({ user }) {
+  const [favoritedArtists, setFavoritedArtists] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
-    getAllFavorites(userInfoObj.uid).then((artists) => {
-      if (isMounted) setFavArtists(artists);
-    });
-    return () => {
+    getFavoritedArtists(user.uid).then((favArtistArray) => {
+      if (isMounted) setFavoritedArtists(favArtistArray);
+    }); return () => {
       isMounted = false;
     };
-  }, []);
+  }, [favoritedArtists]);
 
   return (
     <>
-      {favArtists.map((favArtist) => (
-        <ArtistCard
+      {favoritedArtists.map((favArtist) => (
+        <FavCard
           key={favArtist.firebaseKey}
           favArtist={favArtist}
           // setFavArtists={setFavArtists}
+          user={user}
         />
       ))}
       ;
     </>
   );
 }
-// Favorites.propTypes = {
-//   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-// };
+FavoritesView.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+};
 
-// Favorites.defaultProps = {
-//   user: null,
-// };
+FavoritesView.defaultProps = {
+  user: null,
+};

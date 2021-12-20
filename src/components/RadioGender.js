@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function RadioGender({ filter, setFilter, resetFilter }) {
+export default function RadioGender({ setFilter, resetFilter }) {
   const selectGender = (e) => {
-    const { name } = e.target;
-    if (name === 'female') {
+    const { value } = e.target;
+    if (value === 'female') {
       setFilter('female');
-    } else if (name === 'male') {
+    } else if (value === 'male') {
       setFilter('male');
-      console.warn(filter);
-    } else if (name === 'nonbinary') {
+    } else if (value === 'nonbinary') {
       setFilter('nonbinary');
     }
   };
@@ -20,7 +19,8 @@ export default function RadioGender({ filter, setFilter, resetFilter }) {
         <input
           className="form-check-input"
           type="radio"
-          name="female"
+          name="gender"
+          value="female"
           onChange={selectGender}
         />
         <label
@@ -34,7 +34,8 @@ export default function RadioGender({ filter, setFilter, resetFilter }) {
         <input
           className="form-check-input"
           type="radio"
-          name="male"
+          name="gender"
+          value="male"
           onChange={selectGender}
         />
         <label
@@ -48,7 +49,8 @@ export default function RadioGender({ filter, setFilter, resetFilter }) {
         <input
           className="form-check-input"
           type="radio"
-          name="nonbinary"
+          name="gender"
+          value="nonbinary"
           onChange={selectGender}
         />
         <label
@@ -69,10 +71,10 @@ export default function RadioGender({ filter, setFilter, resetFilter }) {
 }
 
 RadioGender.propTypes = {
-  filter: PropTypes.string,
+  // filter: PropTypes.string,
   setFilter: PropTypes.func.isRequired,
   resetFilter: PropTypes.func.isRequired,
 };
-RadioGender.defaultProps = {
-  filter: null,
-};
+// RadioGender.defaultProps = {
+//   filter: null,
+// };

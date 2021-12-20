@@ -15,11 +15,11 @@ export default function ShowAllArtists({ user }) {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [allArtists]);
 
   return (
     <div>
-      <SearchButtonGroup />
+      <SearchButtonGroup user={user} />
       {allArtists.map((artist) => (
         <ArtistCard
           key={artist.firebaseKey}

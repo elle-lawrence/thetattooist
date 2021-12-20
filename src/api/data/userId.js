@@ -7,6 +7,5 @@ export default function userId() {
     uid: auth.currentUser?.uid,
     isAdmin: auth.currentUser?.uid === process.env.REACT_APP_ADMIN_UID,
   };
-  // console.warn(userInfoObj.isAdmin);
   return userInfoObj;
 }

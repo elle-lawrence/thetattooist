@@ -15,7 +15,6 @@ const CardStyle = styled.div`
 export default function ArtistCard({
   artist, setAllArtists, favArtist, user,
 }) {
-  // console.warn(userInfoObj);
   return (
     <>
       <CardStyle className="card">
