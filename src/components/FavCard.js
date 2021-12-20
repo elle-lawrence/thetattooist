@@ -6,10 +6,39 @@ import FavoriteCheck from './FavoriteCheck';
 
 const CardStyle = styled.div`
   width: 25rem;
-  height: 25rem;
+  height: 35rem;
   margin: 20px;
   flex-basis: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 1px;
+  margin: 20px;
+  box-shadow: 10px 10px 10px 0px;
+
+  position: relative;
+  z-index: 0;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 20px 20px 20px 0px;
+  }
 `;
+const CardButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card-style {
+    font-family: 'Nunito', sans-serif;
+  }
+`;
+
 export default function FavCard({ favArtist, user }) {
   return (
     <>
@@ -18,8 +47,8 @@ export default function FavCard({ favArtist, user }) {
           src={favArtist.thumbnailImg}
           className="card-img-top"
           alt="thumbnail of Artist"
-          height="70"
-          width="70"
+          height="200"
+          // width="70"
         />
         <div className="card-body">
           <h3 className="card-title">{favArtist.name}</h3>
@@ -29,13 +58,16 @@ export default function FavCard({ favArtist, user }) {
           <h5>Hourly Rate: {favArtist.hourlyRt}</h5>
           <h5>Average Availability: {favArtist.availability}</h5>
           <h5>Shop: {favArtist.shopName}</h5>
+          <CardButtonContainer>
+            <DetailsButton
+              firebaseKey={favArtist.firebaseKey}
+              singleArtist={favArtist}
+            />
+            <FavoriteCheck favArtist={favArtist} artist={favArtist} user={user} />
+
+          </CardButtonContainer>
         </div>
       </CardStyle>
-      <DetailsButton
-        firebaseKey={favArtist.firebaseKey}
-        singleArtist={favArtist}
-      />
-      <FavoriteCheck favArtist={favArtist} artist={favArtist} user={user} />
     </>
   );
 }

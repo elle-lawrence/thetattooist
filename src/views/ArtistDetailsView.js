@@ -14,7 +14,6 @@ export default function ArtistDetailsView() {
   return (
     <div>
       <>
-        <h4>See Artist Info here</h4>
         <ArtistDetails singleArtist={singleArtist} />
       </>
     </div>

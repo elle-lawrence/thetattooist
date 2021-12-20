@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { VscDiffAdded } from 'react-icons/vsc';
 import SignOutButton from './buttons/SignOutButton';
 import SignInButton from './buttons/SignInButton';
 
@@ -64,7 +65,7 @@ export default function Navigation({ user }) {
         {user?.isAdmin ? (
           <>
             <Link className="linkStyling" to="/add">
-              +
+              <VscDiffAdded />
             </Link>
           </>
         ) : (

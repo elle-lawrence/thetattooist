@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { VscHeart } from 'react-icons/vsc';
 import { createFavorite, getAllFavorites, deleteFavorite } from '../api/data/favoritesData';
 
+const Checkbox = styled.div`
+  .checkboxStyle {
+    background-color: black;
+  }
+`;
 export default function FavoriteCheck({ artist, user }) {
   const [isChecked, setIsChecked] = useState(false);
   const [fav, setFav] = useState({});
@@ -28,12 +35,28 @@ export default function FavoriteCheck({ artist, user }) {
   };
 
   return (
-    <input
-      type="checkbox"
-      className="form-check-input"
-      checked={isChecked}
-      onChange={handleSubmit}
-    />
+    <Checkbox>
+      <input
+        type="checkbox"
+        className="btn-check checkboxStyle form-check-input text-danger"
+        id="btncheck1"
+        autoComplete="off"
+        checked={isChecked}
+        onChange={handleSubmit}
+      />
+      <label
+        className="btn btn-outline-primary"
+        htmlFor="btncheck1"
+      >
+        <VscHeart />
+      </label>
+      {/* <input
+        type="checkbox"
+        className="checkboxStyle form-check-input"
+        checked={isChecked}
+        onChange={handleSubmit}
+      /> */}
+    </Checkbox>
   );
 }
 

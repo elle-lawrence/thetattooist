@@ -1,4 +1,5 @@
 import React from 'react';
+import { VscSignOut } from 'react-icons/vsc';
 import { signOutUser } from '../../api/auth';
 
 export default function SignOutButton() {
@@ -8,7 +9,7 @@ export default function SignOutButton() {
       className="sign-btn btn btn-outline-light"
       onClick={signOutUser}
     >
-      <i className="fas fa-sign-out-alt" />
+      <VscSignOut />
     </button>
   );
 }

@@ -1,82 +1,44 @@
-# React Template
-[![Netlify Status](https://api.netlify.com/api/v1/badges/339c4ae9-fc7f-41b4-9b49-2dab0a20eaba/deploy-status)](https://app.netlify.com/sites/react-template-21/deploys)
+# the tattooist  [![Netlify Status](https://api.netlify.com/api/v1/badges/4ab7e730-7ed3-4cfd-a988-66195e79a991/deploy-status)](https://app.netlify.com/sites/drt-sortinghat/deploys)
+<!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
 
-[See Live Demo of this Template](https://react-template-21.netlify.app/)
 
-This template includes all the dependencies and set up needed for you to work within defined code standards and structure to get you up and running quickly.
 
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Other important tidbits](#other-important-tidbits)
-    - [React Dev Tools](#react-dev-tools)
-    - [Using axios](#using-axios)
-    - [Deploying on Netlify](#deploying-on-netlify)
-___
+[View App](#your-link)
 
-## Get Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-![Use this Template](./documentation/usetemplate.png)
+## Get Started <!-- OPTIONAL, but doesn't hurt -->
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-![Create Project](./documentation/createproject.png)
-
-3. Clone your new repo to your local machine
-4. Go to the **NEXT** section
-
-## Starting the Project
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name
-1. Open the `/public/index.html` file and change the `title` attribute to the name of your application
-1. Rename the `.env.local.sample` file to `.env.local` file. The final file name should be `.env.local`
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short
-1. From your command line, be in the root directory and run `npx husky install`
-1. To start your application, run `npm start`
-
-### If you see this, you are set to go!
-![LIT](./documentation/lit-screen.png)
-
-**NOTES:** 
-- Changes you make to the project will make the browser reload on save...no more hard refresh unless something goes wrong.
-
-## Other Important Tidbits
-### React Dev Tools
-From this time forward, you will be expected to have a clean console in order for your assignments to be approved. Use [React Developer Tools Chrome Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) to help with debugging.
-### Including Images with React
-If you have a folder of local images that you want to load into your code things get a little strange with webpack.  Remember the only way webpack knows about assets is if they are imported into your javascript files.  Even our CSS is not added until those files are imported into our javascript files.  Below is some sample code for how to load a local image file into your project
-
-```js
-import cat from './assets/cat.jpg';
-
-<>
-  <img src=${cat} alt="picture of a cat"/>
-</>
-
-```
-### Using Axios
-> For every file you will need to make an API request in, you will need to import Axios
-```js
-import axios from 'axios';
-
-const examplePromise = () => {
-  axios.get('http://localhost:3001/example')
-    .then((data) => {
-      console.warn(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+const getFavoritedArtists = (user) => new Promise((resolve, reject) => {
+  Promise.all([getAllArtists(), getAllFavorites(user)])
+    .then(([artists, favorites]) => {
+      const favsArray = artists.filter((artist) => favorites.find((favorite) => favorite.artistId === artist.firebaseKey));
+      resolve(favsArray);
+    }).catch((error) => reject(error));
 });
-```
 
-### Deploying on Netlify
+## About the User <!-- This is a scaled down user persona -->
+- The ideal user for this application is someone who is interested in getting tattoos or find a new artist
+- They have students in their classrooms that they would like to put into random groups and they have a love and passion of Harry Potter
+- The problem this app solves for them is it allows them to get their students involved and excited about being in random groups. The students have felt that the groups have not been so random and based on favorites.
 
-- Build Command: `yarn build`
-- Publish directory: `build`
-- **Add Environmental Variables (NOT REQUIRED for Apps that do not use API Keys, etc)**
-    - Any Enviromental variables you are using in your `.env.local` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there.
-- **Update Firebase URL Settings**
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-# Your own learning
-If you are interested in setting up your own project for things outside of class, you can run the command to start a React project `npx create-react-app {APP_NAME}` and setup all the files and structures from scratch.
+## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
+- When a new student is added an object should be created and that object should be pushed into an array of students that then prints to the DOM.
+- House Colors: The color of the student's card changes depending on which house they were sorted.
+- Card Ordering: Sort the student cards by some criteria (i.e. alphabetically by name, by house)
+- Voldermort's Army: Create a separate container of cards that hold the cards for students that have been expelled. These should be styled differently from Hogwarts students.
+
+## Video Walkthrough of APP NAME <!-- A loom link is sufficient -->
+https://www.loom.com/share/829b90d831ea441ba2db6bea724af210
+
+## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
+- [Check out the deployed site](#your-link)
+- [Wireframes](#your-link)
+- [Project Board](#your-link)
+
+## Code Snippet <!-- OPTIONAL, but doesn't hurt -->
+PLACE CODE SNIPPET HERE
+
+## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
+<img width="1148" alt="Your Alt" src="your-link.png">
+
+## Contributors
+- [YOUR NAME](https://github.com/your-github-url)

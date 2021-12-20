@@ -5,14 +5,18 @@ import PropTypes from 'prop-types';
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 2;
   justify-content: center;
   row-gap: 30px;
   padding-left: 10vw;
   padding-right: 10vw;
-  align-items: left;
-  background-color:
-  backdrop-filter: blur(5px);
+  align-items: center;
+
+  .infoDiv {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  }
+
 `;
 
 export default function ArtistDetails({ singleArtist }) {
@@ -32,15 +36,17 @@ export default function ArtistDetails({ singleArtist }) {
             </div>
           </div>
         </div>
-        <h3>{singleArtist.name}</h3>
-        <h5>{singleArtist.city}</h5>
-        <h5>{singleArtist.gender}</h5>
-        <h5>{singleArtist.orientation}</h5>
-        <h5>{singleArtist.hourlyRt}</h5>
-        <h5>{singleArtist.instagram}</h5>
-        <h5>{singleArtist.portfolioUrl}</h5>
-        <h5>{singleArtist.availability}</h5>
-        <h5>{singleArtist.shopName}</h5>
+        <div className="infoDiv">
+          <h3>{singleArtist.name}</h3>
+          <h5>{singleArtist.city}</h5>
+          <h5>{singleArtist.gender}</h5>
+          <h5>{singleArtist.orientation}</h5>
+          <h5>${singleArtist.hourlyRt}</h5>
+          <h5>{singleArtist.instagram}</h5>
+          <h5>{singleArtist.portfolioUrl}</h5>
+          <h5>{singleArtist.availability}</h5>
+          <h5>{singleArtist.shopName}</h5>
+        </div>
 
       </DetailsContainer>
     </>
