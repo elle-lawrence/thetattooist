@@ -1,6 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+const RadioStyleDiv = styled.div`
+  display: flex;
+  color: #555555;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  .form-check-label {
+    color: #555555;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-style{
+    border: none;
+    color: #555555;
+    font-family: 'Nunito', sans-serif;
+  }
+
+`;
 export default function RadioGender({ setFilter, resetFilter }) {
   const selectGender = (e) => {
     const { value } = e.target;
@@ -14,10 +33,10 @@ export default function RadioGender({ setFilter, resetFilter }) {
   };
 
   return (
-    <>
-      <div className="form-check form-check-inline">
+    <RadioStyleDiv>
+      <div className="form-check form-check-inline radioStyle">
         <input
-          className="form-check-input"
+          className="form-check-input "
           type="radio"
           name="gender"
           value="female"
@@ -30,7 +49,7 @@ export default function RadioGender({ setFilter, resetFilter }) {
           Female
         </label>
       </div>
-      <div className="form-check form-check-inline">
+      <div className="form-check form-check-inline radioStyle">
         <input
           className="form-check-input"
           type="radio"
@@ -45,7 +64,7 @@ export default function RadioGender({ setFilter, resetFilter }) {
           Male
         </label>
       </div>
-      <div className="form-check form-check-inline">
+      <div className="form-check form-check-inline radioStyle">
         <input
           className="form-check-input"
           type="radio"
@@ -62,11 +81,11 @@ export default function RadioGender({ setFilter, resetFilter }) {
       </div>
       <button
         type="button"
-        className="btn-outline-dark btn"
+        className="btn-outline-dark btn btn-style"
         onClick={resetFilter}
       >Clear Filter
       </button>
-    </>
+    </RadioStyleDiv>
   );
 }
 

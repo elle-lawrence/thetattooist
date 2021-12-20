@@ -5,6 +5,7 @@ import ArtistCard from '../components/ArtistCard';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 // import SearchBar from '../components/SearchBar';
 import RadioGender from '../components/RadioGender';
+import { GroupButtonStyling } from './ShowAllArtists';
 
 export default function SearchGender({ user }) {
   const [allArtists, setAllArtists] = useState([]);
@@ -66,7 +67,9 @@ export default function SearchGender({ user }) {
   return (
     <>
       <div>
-        <SearchButtonGroup user={user} />
+        <GroupButtonStyling>
+          <SearchButtonGroup user={user} />
+        </GroupButtonStyling>
         {/* <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} /> */}
         <RadioGender
           setFilter={setFilter}

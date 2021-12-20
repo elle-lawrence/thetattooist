@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import ArtistCard from '../components/ArtistCard';
 import { getAllArtists } from '../api/data/artists';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 
-export default function ShowAllArtists({ user }) {
+const GroupButtonStyling = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  .btn-style{
+    border: none;
+    color: #555555;
+    font-family: 'Nunito', sans-serif;
+  }
+`;
+function ShowAllArtists({ user }) {
   const [allArtists, setAllArtists] = useState([]);
 
   useEffect(() => {
@@ -19,7 +32,9 @@ export default function ShowAllArtists({ user }) {
 
   return (
     <div>
-      <SearchButtonGroup user={user} />
+      <GroupButtonStyling>
+        <SearchButtonGroup user={user} />
+      </GroupButtonStyling>
       {allArtists.map((artist) => (
         <ArtistCard
           key={artist.firebaseKey}
@@ -39,3 +54,5 @@ ShowAllArtists.propTypes = {
 ShowAllArtists.defaultProps = {
   user: null,
 };
+
+export { ShowAllArtists, GroupButtonStyling };

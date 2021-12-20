@@ -8,9 +8,37 @@ import FavoriteCheck from './FavoriteCheck';
 
 const CardStyle = styled.div`
   width: 25rem;
-  height: 25rem;
+  height: 35rem;
   margin: 20px;
   flex-basis: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 1px;
+  margin: 20px;
+  box-shadow: 10px 10px 10px 0px;
+
+  position: relative;
+  z-index: 0;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 20px 20px 20px 0px;
+  }
+`;
+const CardButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card-style {
+    font-family: 'Nunito', sans-serif;
+  }
 `;
 export default function ArtistCard({
   artist, setAllArtists, favArtist, user,
@@ -22,44 +50,47 @@ export default function ArtistCard({
           src={artist.thumbnailImg}
           className="card-img-top"
           alt="thumbnail of Artist"
-          height="70"
-          width="70"
+          height="200"
+          // width=""
         />
-        <div className="card-body">
-          <h3 className="card-title">{artist.name}</h3>
-          <h5 className="card-text">{artist.city}</h5>
-          <h5>{artist.gender}</h5>
-          <h5>{artist.orientation}</h5>
-          <h5>Hourly Rate: {artist.hourlyRt}</h5>
-          <h5>Average Availability: {artist.availability}</h5>
-          <h5>Shop: {artist.shopName}</h5>
+        <div className="card-style card-body">
+          <h2 className="card-title">{artist.name}</h2>
+          <h4 className="card-text">{artist.city}</h4>
+          <h6>{artist.gender}</h6>
+          <h6>{artist.orientation}</h6>
+          <h6>Hourly Rate: ${artist.hourlyRt}</h6>
+          <h6>Average Availability: {artist.availability}</h6>
+          <h6>Shop: {artist.shopName}</h6>
         </div>
+        <CardButtonContainer>
+          {user?.isAdmin ? (
+            <>
+              <DetailsButton
+                firebaseKey={artist.firebaseKey}
+                singleArtist={artist}
+              />
+              <EditButton firebaseKey={artist.firebaseKey} />
+              <DeleteButton
+                firebaseKey={artist.firebaseKey}
+                setAllArtist={setAllArtists}
+              />
+            </>
+          ) : (
+            <>
+              <DetailsButton
+                firebaseKey={artist.firebaseKey}
+                singleArtist={artist}
+              />
+            </>
+          )}
+          {user ? (
+            <FavoriteCheck favArtist={favArtist} artist={artist} user={user} />
+          ) : (
+            <></>
+          )}
+
+        </CardButtonContainer>
       </CardStyle>
-      {user?.isAdmin ? (
-        <>
-          <DetailsButton
-            firebaseKey={artist.firebaseKey}
-            singleArtist={artist}
-          />
-          <EditButton firebaseKey={artist.firebaseKey} />
-          <DeleteButton
-            firebaseKey={artist.firebaseKey}
-            setAllArtist={setAllArtists}
-          />
-        </>
-      ) : (
-        <>
-          <DetailsButton
-            firebaseKey={artist.firebaseKey}
-            singleArtist={artist}
-          />
-        </>
-      )}
-      {user ? (
-        <FavoriteCheck favArtist={favArtist} artist={artist} user={user} />
-      ) : (
-        <></>
-      )}
     </>
   );
 }

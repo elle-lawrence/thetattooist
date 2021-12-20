@@ -4,6 +4,7 @@ import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import SearchBar from '../components/SearchBar';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
+import { GroupButtonStyling } from './ShowAllArtists';
 
 export default function SearchName({ user }) {
   const [allArtists, setAllArtists] = useState([]);
@@ -64,7 +65,9 @@ export default function SearchName({ user }) {
 
   return (
     <div>
-      <SearchButtonGroup user={user} />
+      <GroupButtonStyling>
+        <SearchButtonGroup user={user} />
+      </GroupButtonStyling>
       <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
       {shownArtists.map((artist) => (
         <ArtistCard
