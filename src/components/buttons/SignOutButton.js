@@ -5,7 +5,7 @@ export default function SignOutButton() {
   return (
     <button
       type="button"
-      className="btn btn-outline-light"
+      className="sign-btn btn btn-outline-light"
       onClick={signOutUser}
     >
       <i className="fas fa-sign-out-alt" />

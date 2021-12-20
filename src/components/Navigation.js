@@ -8,20 +8,29 @@ import SignInButton from './buttons/SignInButton';
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 2px dashed black;
+  margin: 10px;
+  background-color: #1B1A1A;
+
+  .sc-jRQBWg gSGITA navbar navbar-dark bg-dark{
+    background-color: transparent;
+    padding: 0px;
+  }
 `;
 
 const NavContainer = styled.div`
   display: flex;
   column-gap: 10px;
-  margin-left: 20px;
+  background-color: #1B1A1A;
+
+
 
   .linkStyling {
     padding-left: 20px;
     padding-right: 20px;
-    color: white;
-    font-size: 25px;
+    color: #555555;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
   }
 
   a:active {
@@ -29,31 +38,33 @@ const NavContainer = styled.div`
   }
 
   a:hover {
-    text-shadow: 2px 2px #a9a29e;
+    text-shadow: 1px 1px #a9a29e;
+  }
+
+  .sign-btn {
+    border: none;
+    color: #555555;
   }
 `;
 
 export default function Navigation({ user }) {
   return (
-    <NavBar className="navbar navbar-dark bg-dark">
+    <NavBar className="navbar-styling navbar navbar-dark bg-dark">
       <NavContainer className="container-fluid">
         <Link className="linkStyling" to="/home">
-          HOME
+          the tattooist
         </Link>
         {user ? (
           <>
             <SignOutButton />
-            <Link className="linkStyling" to="/favorites">
-              Favorites
-            </Link>
           </>
         ) : (
           <SignInButton />
         )}
         {user?.isAdmin ? (
           <>
-            <Link className="linkStyling" to="/admin">
-              ADMIN
+            <Link className="linkStyling" to="/add">
+              +
             </Link>
           </>
         ) : (

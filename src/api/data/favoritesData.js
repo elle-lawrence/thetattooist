@@ -1,5 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
+import { getAllArtists } from './artists';
 
 const { databaseURL } = firebaseConfig;
 
@@ -36,6 +37,14 @@ const deleteFavorite = (obj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getFavoritedArtists = (user) => new Promise((resolve, reject) => {
+  Promise.all([getAllArtists(), getAllFavorites(user)])
+    .then(([artists, favorites]) => {
+      const favsArray = artists.filter((artist) => favorites.find((favorite) => favorite.artistId === artist.firebaseKey));
+      resolve(favsArray);
+    }).catch((error) => reject(error));
+});
+
 export {
-  getAllFavorites, getSingleFavorite, createFavorite, deleteFavorite,
+  getAllFavorites, getSingleFavorite, createFavorite, deleteFavorite, getFavoritedArtists,
 };

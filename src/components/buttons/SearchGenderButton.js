@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function SearchGenderButton() {
   return (
-    <Link to="/searchgender" className="btn-outline-dark btn">
-      Search by Gender
+    <Link to="/searchgender" className="btn-style btn-outline-dark btn">
+      search by gender
     </Link>
   );
 }
