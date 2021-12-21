@@ -6,7 +6,7 @@ import { createFavorite, getAllFavorites, deleteFavorite } from '../api/data/fav
 
 const Checkbox = styled.div`
   .checkboxStyle {
-    background-color: black;
+    background-color: #1B1A1A;
   }
 `;
 export default function FavoriteCheck({ artist, user }) {
