@@ -9,6 +9,23 @@ const EntryForm = styled.form`
   flex-direction: column;
   align-items: center;
   row-gap: 10px;
+  width: 50vw;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: 'Nunito', sans-serif;
+
+.form-title {
+    font-family: 'Nunito', sans-serif;
+    #555555;
+  }
+
+  h5 {
+    font-family: 'Nunito', sans-serif;
+    #555555;
+  }
 `;
 
 const initialState = {
@@ -78,8 +95,8 @@ export default function Form({ artist }) {
 
   return (
     <EntryForm onSubmit={handleSubmit}>
-      <h1>{artist.firebaseKey ? 'EDIT' : 'SAVE'} artist</h1>
-      <h5>
+      <h2 className="form-title">{artist.firebaseKey ? 'EDIT' : 'SAVE'} artist</h2>
+      <h5 className="form-title">
         {artist.firebaseKey
           ? 'Update artist below!'
           : 'Add artist below!'}
@@ -155,6 +172,16 @@ export default function Form({ artist }) {
       <input
         className="form-control form-control-lg me-1 input"
         type="url"
+        name="shopUrl"
+        id="shopUrl"
+        value={formInput.shopUrl}
+        onChange={handleChange}
+        placeholder="Shop URL"
+        required
+      />
+      <input
+        className="form-control form-control-lg me-1 input"
+        type="url"
         name="instagram"
         id="instagram"
         value={formInput.instagram}
@@ -197,6 +224,7 @@ Form.propTypes = {
     instagram: PropTypes.string,
     availability: PropTypes.string,
     shopName: PropTypes.string,
+    shopUrl: PropTypes.string,
     portfolioUrl: PropTypes.string,
     thumbnailImg: PropTypes.string,
   }),

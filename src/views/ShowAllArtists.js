@@ -17,6 +17,16 @@ const GroupButtonStyling = styled.div`
     font-family: 'Nunito', sans-serif;
   }
 `;
+
+export const CardContainerStyling = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-evenly;
+  box-shadow: 10px 10px 10px 0px;
+
+`;
+
 function ShowAllArtists({ user }) {
   const [allArtists, setAllArtists] = useState([]);
 
@@ -35,14 +45,16 @@ function ShowAllArtists({ user }) {
       <GroupButtonStyling>
         <SearchButtonGroup user={user} />
       </GroupButtonStyling>
-      {allArtists.map((artist) => (
-        <ArtistCard
-          key={artist.firebaseKey}
-          artist={artist}
-          setAllArtists={setAllArtists}
-          user={user}
-        />
-      ))}
+      <CardContainerStyling>
+        {allArtists.map((artist) => (
+          <ArtistCard
+            key={artist.firebaseKey}
+            artist={artist}
+            setAllArtists={setAllArtists}
+            user={user}
+          />
+        ))}
+      </CardContainerStyling>
     </div>
   );
 }
