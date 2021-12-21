@@ -36,7 +36,7 @@ export default function FavoriteCheck({ artist, user }) {
 
   return (
     <Checkbox>
-      <input
+      {/* <input
         type="checkbox"
         className="btn-check checkboxStyle form-check-input text-danger"
         id="btncheck1"
@@ -47,15 +47,15 @@ export default function FavoriteCheck({ artist, user }) {
       <label
         className="btn btn-outline-primary"
         htmlFor="btncheck1"
-      >
-        <VscHeart />
-      </label>
-      {/* <input
+      > */}
+      {/* </label> */}
+      <VscHeart />
+      <input
         type="checkbox"
         className="checkboxStyle form-check-input"
         checked={isChecked}
         onChange={handleSubmit}
-      /> */}
+      />
     </Checkbox>
   );
 }
