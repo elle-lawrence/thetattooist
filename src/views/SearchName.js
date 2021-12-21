@@ -4,7 +4,7 @@ import { getAllArtists } from '../api/data/artists';
 import ArtistCard from '../components/ArtistCard';
 import SearchBar from '../components/SearchBar';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
-import { GroupButtonStyling } from './ShowAllArtists';
+import { CardContainerStyling, GroupButtonStyling } from './ShowAllArtists';
 
 export default function SearchName({ user }) {
   const [allArtists, setAllArtists] = useState([]);
@@ -69,14 +69,16 @@ export default function SearchName({ user }) {
         <SearchButtonGroup user={user} />
       </GroupButtonStyling>
       <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-      {shownArtists.map((artist) => (
-        <ArtistCard
-          key={artist.firebaseKey}
-          artist={artist}
-          setAllArtists={setAllArtists}
-          user={user}
-        />
-      ))}
+      <CardContainerStyling>
+        {shownArtists.map((artist) => (
+          <ArtistCard
+            key={artist.firebaseKey}
+            artist={artist}
+            setAllArtists={setAllArtists}
+            user={user}
+          />
+        ))}
+      </CardContainerStyling>
     </div>
   );
 }

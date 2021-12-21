@@ -5,7 +5,7 @@ import ArtistCard from '../components/ArtistCard';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 // import SearchBar from '../components/SearchBar';
 import RadioGender from '../components/RadioGender';
-import { GroupButtonStyling } from './ShowAllArtists';
+import { CardContainerStyling, GroupButtonStyling } from './ShowAllArtists';
 
 export default function SearchGender({ user }) {
   const [allArtists, setAllArtists] = useState([]);
@@ -77,7 +77,7 @@ export default function SearchGender({ user }) {
           resetFilter={resetFilter}
         />
       </div>
-      <div>
+      <CardContainerStyling>
         {shownArtists.map((artist) => (
           <ArtistCard
             key={artist.firebaseKey}
@@ -86,7 +86,8 @@ export default function SearchGender({ user }) {
             user={user}
           />
         ))}
-      </div>
+      </CardContainerStyling>
+
     </>
   );
 }

@@ -7,28 +7,28 @@ import DeleteButton from './buttons/DeleteButton';
 import FavoriteCheck from './FavoriteCheck';
 
 const CardStyle = styled.div`
-  width: 25rem;
-  height: 35rem;
-  margin: 20px;
+  display: flex;
   flex-basis: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Nunito', sans-serif;
-  display: flex;
+  flex-grow: 2;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  font-family: 'Nunito', sans-serif;
+  align-items: center;
   text-align: center;
-  padding: 20px;
   border-radius: 1px;
   margin: 20px;
-  box-shadow: 10px 10px 10px 0px;
+  padding: 20px;
+  width: 25rem;
+  height: 35rem;
 
   position: relative;
   z-index: 0;
+
   &:hover {
     transform: scale(1.05);
-    box-shadow: 20px 20px 20px 0px;
+    box-shadow: 0px 10px 10px 10px #555555;
   }
 `;
 const CardButtonContainer = styled.div`
@@ -44,13 +44,13 @@ export default function ArtistCard({
   artist, setAllArtists, favArtist, user,
 }) {
   return (
-    <>
+    <CardStyle>
       <CardStyle className="card">
         <img
           src={artist.thumbnailImg}
           className="card-img-top"
           alt="thumbnail of Artist"
-          height="200"
+          height="250"
           // width=""
         />
         <div className="card-style card-body">
@@ -91,7 +91,7 @@ export default function ArtistCard({
 
         </CardButtonContainer>
       </CardStyle>
-    </>
+    </CardStyle>
   );
 }
 

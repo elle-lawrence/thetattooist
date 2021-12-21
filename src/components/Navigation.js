@@ -39,7 +39,7 @@ const NavContainer = styled.div`
   }
 
   a:hover {
-    text-shadow: 1px 1px #a9a29e;
+    text-shadow: 0 0 10px #FF58F9;
   }
 
   .sign-btn {

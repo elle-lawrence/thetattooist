@@ -13,7 +13,6 @@ const CardStyle = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Nunito', sans-serif;
-  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
