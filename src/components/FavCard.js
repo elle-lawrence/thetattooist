@@ -46,7 +46,7 @@ export default function FavCard({ favArtist, user }) {
           src={favArtist.thumbnailImg}
           className="card-img-top"
           alt="thumbnail of Artist"
-          height="200"
+          height="250"
           // width="70"
         />
         <div className="card-body">

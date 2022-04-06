@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getFavoritedArtists } from '../api/data/favoritesData';
 import FavCard from '../components/FavCard';
-import { GroupButtonStyling } from './ShowAllArtists';
+import { CardContainerStyling, GroupButtonStyling } from './ShowAllArtists';
 import SearchButtonGroup from '../components/buttons/SearchButtonGroup';
 
 export default function FavoritesView({ user }) {
@@ -22,14 +22,17 @@ export default function FavoritesView({ user }) {
       <GroupButtonStyling>
         <SearchButtonGroup />
       </GroupButtonStyling>
-      {favoritedArtists.map((favArtist) => (
-        <FavCard
-          key={favArtist.firebaseKey}
-          favArtist={favArtist}
+      <CardContainerStyling>
+        {favoritedArtists.map((favArtist) => (
+          <FavCard
+            key={favArtist.firebaseKey}
+            favArtist={favArtist}
           // setFavArtists={setFavArtists}
-          user={user}
-        />
-      ))}
+            user={user}
+          />
+        ))}
+
+      </CardContainerStyling>
       ;
     </>
   );
