@@ -13,7 +13,7 @@ const CardStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  background: #1B1A1A;
   font-family: 'Nunito', sans-serif;
   align-items: center;
   text-align: center;
@@ -22,13 +22,13 @@ const CardStyle = styled.div`
   padding: 20px;
   width: 25rem;
   height: 35rem;
-
+  color: gray;
   position: relative;
   z-index: 0;
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 10px 10px 10px #555555;
+    transform: scale(1.005);
+    box-shadow: 0px 0px 10px 10px #555555;
   }
 `;
 const CardButtonContainer = styled.div`
