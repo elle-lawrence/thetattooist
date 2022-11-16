@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
     "@fortawesome/fontawesome-free": "5.14.0",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
+    "@mui/styled-engine-sc": "^5.10.14",
     "@popperjs/core": "^2.9.3",
     "@react-icons/all-files": "^4.1.0",
     "axios": "^0.21.1",
@@ -17,7 +23,7 @@
     "react-scripts": "4.0.3",
     "reactstrap": "^8.10.0",
     "sass": "^1.42.1",
-    "styled-components": "^5.3.3",
+    "styled-components": "^5.3.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
